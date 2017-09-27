@@ -13,28 +13,14 @@
 <form action="/admin/user" method="post">
 <% for (var i in data) {%>
     <input type="submit"value="删除">：<input type="radio" class="id" value="<%= data[i]['id']%>" name="id">
-    用户名：<%= data[i]['username']%><input type="text"class="user">
-    管理员：<%= data[i]['admin']%><input type="text"class="admin">
+    用户名：<%= data[i]['username']%>
+    管理员：<%= data[i]['admin']%>
+    <a href="/admin/user/updateuser?id=<%= data[i]['id']%>">修改</a>
     <br>
 <%}%>
-    <input type="button" value="修改" class="button">
+
 </form>
 <script>
-    $('.button').click (function () {
-        $.ajax({
-            url:'admin/user',
-            type:'post',
-            dataType:'json',
-            data:{
-                uesr:$('.user').val(),
-                admin:$('.admin').val(),
-                id:$('.id').val()
-            },
-            success:function () {
-
-            }
-        })
-    });
 
 </script>
 </body>

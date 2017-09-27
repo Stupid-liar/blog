@@ -24,14 +24,17 @@ router.post('/user',(req,res) =>{
         sql('delete from user where id = ?',[id],(err,data) =>{
             res.send('删除成功');
         })
-    // if(user && admin){
-    //     sql('UPDATE `user` SET `admin` = ? WHERE `user``id` = ?',[admin,id],(err.date) =>{
-    //
-    //     })
-    // }
-    //res.render('admin/user');
 });
+router.get('/user/updateuser',(req,res)=>{
+    sql('select * from user where id=?',[req.query.id],(err,data) =>{
+        res.render('admin/updateuser',{data:data});
+    });
+})
+router.post('user/updateuser',(req,res) =>{
+    //const newuser = req.body.newuser;
 
+    console.log(req.body.newadmin);
 
+});
 
 module.exports = router;

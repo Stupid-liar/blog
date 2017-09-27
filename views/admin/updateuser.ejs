@@ -6,9 +6,34 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="/js/jquery.js"></script>
 </head>
 <body>
-这里是修改页面
+这里是修改页面<br>
 
+原始用户名：<%= data[0]['username']%><br>
+权限：<%= data[0]['admin']%><br>
+新用户名：<input type="text" class="newuser"name="newuser"><br>
+新权限：<input type="number" class="newadmin" placeholder="0为一般用户1为管理员"><br>
+<input type="button" class="button" value="提交">
+
+<script>
+
+    $('.button').click (function () {
+        $.ajax({
+            url:'admin/user/updateuser',
+            type:'post',
+            dataType:'json',
+            data:{
+                newuesr:$('.newuser').val(),
+                newadmin:$('.newadmin').val()
+            },
+            success:function () {
+
+            }
+        })
+    });
+
+</script>
 </body>
 </html>
