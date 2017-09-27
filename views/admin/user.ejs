@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery.js"></script>
+</head>
+<body>
+这里是用户界面<br>
+<form action="/admin/user" method="post">
+<% for (var i in data) {%>
+    <input type="submit"value="删除">：<input type="radio" class="id" value="<%= data[i]['id']%>" name="id">
+    用户名：<%= data[i]['username']%><input type="text"class="user">
+    管理员：<%= data[i]['admin']%><input type="text"class="admin">
+    <br>
+<%}%>
+    <input type="button" value="修改" class="button">
+</form>
+<script>
+    $('.button').click (function () {
+        $.ajax({
+            url:'admin/user',
+            type:'post',
+            dataType:'json',
+            data:{
+                uesr:$('.user').val(),
+                admin:$('.admin').val(),
+                id:$('.id').val()
+            },
+            success:function () {
+
+            }
+        })
+    });
+
+</script>
+</body>
+</html>
