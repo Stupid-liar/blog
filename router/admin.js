@@ -30,10 +30,14 @@ router.get('/user/updateuser',(req,res)=>{
         res.render('admin/updateuser',{data:data});
     });
 })
-router.post('user/updateuser',(req,res) =>{
-    //const newuser = req.body.newuser;
-
-    console.log(req.body.newadmin);
+router.post('/user/updateuser',(req,res) =>{
+    console.log(req.body);
+    let id = req.body.id,
+        newuser = req.body.newuser,
+        newadmin = req.body.newadmin;
+    sql('UPDATE `user` SET `username` = ?, `admin` = ? WHERE `user`.`id` = ?;',[newuser,newadmin,id],(err,data) =>{
+        res.send('修改成功')
+    })
 
 });
 
