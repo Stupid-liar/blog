@@ -16,6 +16,7 @@ router.use('/reg',require('./reg'));
 router.use('/admin',require('./admin'));
 router.get('/logout',(req,res) => {
     res.clearCookie('login');
+    req.session.admin = 0;
 // 网址重定向
     res.redirect('/')
 });
