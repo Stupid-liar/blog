@@ -31,12 +31,17 @@ router.get('/user/updateuser',(req,res)=>{
     });
 })
 router.post('/user/updateuser',(req,res) =>{
-    console.log(req.body);
+    //console.log(req.body);
     let id = req.body.id,
         newuser = req.body.newuser,
         newadmin = req.body.newadmin;
     sql('UPDATE `user` SET `username` = ?, `admin` = ? WHERE `user`.`id` = ?;',[newuser,newadmin,id],(err,data) =>{
-        res.send('修改成功')
+        if(err){
+            res.send('更新失败')
+        }
+        res.json({
+        result: '成功'
+        })
     })
 
 });
