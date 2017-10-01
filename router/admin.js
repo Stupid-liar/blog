@@ -35,15 +35,35 @@ router.post('/user/updateuser',(req,res) =>{
     let id = req.body.id,
         newuser = req.body.newuser,
         newadmin = req.body.newadmin;
-    sql('UPDATE `user` SET `username` = ?, `admin` = ? WHERE `user`.`id` = ?;',[newuser,newadmin,id],(err,data) =>{
-        if(err){
+        sql('UPDATE `user` SET `username` = ?, `admin` = ? WHERE `user`.`id` = ?;',[newuser,newadmin,id],(err,data) =>{
+            if(err){
             res.send('更新失败')
         }
         res.json({
         result: '成功'
         })
     })
-
 });
+router.get('/article',(req,res) => {
+    res.render('admin/article')
+})
 
+router.post('/article',(req,res) => {
+    let title = req.body.title,
+        tag = req.body.tag,
+        author = req.body.author,
+        content = req.body.content,
+        // time = new Date().toLocaleString().substring(0,10);
+        time = new Date().toLocaleString();
+
+    sql('INSERT INTO `article` (`id`, `title`, `tag`, `author`, `content`, `time`) VALUES (0,?,?,?,?,?)',[title,tag,author,content,time],(err,data) =>{
+            if(err){
+                res.send('保存失败')
+                return
+            }
+            res.json({
+                result: '保存成功'
+            })
+        })
+    })
 module.exports = router;

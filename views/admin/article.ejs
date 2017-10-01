@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery.js"></script>
+</head>
+<body>
+文章标题：<input class="title" type="text"><br>
+标签：<input class="tag" type="text"><br>
+作者：<input class="author"type="text"><br>
+内容：<textarea class="content" name="" id="" cols="30" rows="10"></textarea>
+<input class="button" type="button" value="发布文章">
+<script>
+    $('.button').click(function () {
+
+        $.ajax({
+            url:'/admin/article',
+            type:'post',
+            dataType:'json',
+            data:{
+                title:$('.title').val(),
+                tag:$('.tag').val(),
+                author:$('.author').val(),
+                content:$('.content').val(),
+            },
+            success(){
+                alert('保存成功')
+        },error(){
+                alert('保存失败')
+        }
+        })
+    })
+</script>
+</body>
+</html>

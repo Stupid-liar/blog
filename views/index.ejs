@@ -46,6 +46,18 @@
 <% } %>
 
 <!--<%- locals.result %>-->
+
+<% for(var i in data){%>
+    <li>
+        <a href="/article?id=<%= data[i]['id']%>">
+        <h5><%= data[i]['title']%>
+            <%= data[i]['tag']%>
+            <%= data[i]['content']%>
+            <%= data[i]['time']%>
+            <%= data[i]['author']%></h5>
+        </a>
+    </li>
+<%}%>
 <!--<form action="/reg" method="post">-->
     <!--<input type="text" name="user">-->
     <!--<input type="text" name="pass">-->
