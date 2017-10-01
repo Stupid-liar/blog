@@ -49,7 +49,7 @@
 
 <% for(var i in data){%>
     <li>
-        <a href="/article?id=<%= data[i]['id']%>">
+        <a href="/article/<%= data[i]['id']%>.html">
         <h5><%= data[i]['title']%>
             <%= data[i]['tag']%>
             <%= data[i]['content']%>

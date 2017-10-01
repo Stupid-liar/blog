@@ -12,12 +12,20 @@ router.get('/',(req,res) =>{
     //console.log(res.locals.admin)
 
 });
-router.get('/article',(req,res) =>{
-    sql('select * from article where id = ?',[req.query.id],(err,data) =>{
+router.get('/article/:id.html',(req,res) =>{
+    sql('select * from article where id = ?',[req.params.id],(err,data) =>{
+        if(data.length == 0){
+            res.status(404).render('404.ejs')//返回页面的状态码
+            return
+        }
         res.render('article.ejs',{data:data});
     })
-
 });
+// router.get('/article',(req,res) =>{
+//     sql('select * from article where id = ?',[req.query.id],(err,data) =>{
+//     res.render('article.ejs',{data:data});
+// })
+// });
 // 用login代表的登录  用reg代表的注册
 router.use('/login',require('./login'));
 // http://localhost:3000/reg /
