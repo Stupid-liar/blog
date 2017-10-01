@@ -50,11 +50,12 @@
 <% for(var i in data){%>
     <li>
         <a href="/article/<%= data[i]['id']%>.html">
-        <h5><%= data[i]['title']%>
-            <%= data[i]['tag']%>
-            <%= data[i]['content']%>
-            <%= data[i]['time']%>
-            <%= data[i]['author']%></h5>
+        <p>标题：<%= data[i]['title']%>
+            标签：<%= data[i]['tag']%>
+            作者:<%= data[i]['author']%>
+            时间:<%= data[i]['time']%><br>
+            内容:<%= data[i]['content']%>
+        </p>
         </a>
     </li>
 <%}%>
