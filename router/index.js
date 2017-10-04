@@ -18,14 +18,22 @@ router.get('/article/:id.html',(req,res) =>{
             res.status(404).render('404.ejs')//返回页面的状态码
             return
         }
-        res.render('article.ejs',{data:data});
+        sql('select * from articlepinglun where pid = ?',[req.params.id],(err,data1) =>{
+            res.render('article.ejs',{data:data,pinglun:data1 });
+        })
+
     })
 });
-// router.get('/article',(req,res) =>{
-//     sql('select * from article where id = ?',[req.query.id],(err,data) =>{
-//     res.render('article.ejs',{data:data});
-// })
-// });
+router.post('/article/:id.html',(req,res) =>{
+    console.log(req.params)
+    //console.log(req.body)
+    sql('insert into articlepinglun (id,uid,pid,content) values (0,0,?,?)',[req.params.id,req.body.content],(err,data) => {
+        res.send('成功');
+    })
+})
+
+
+
 // 用login代表的登录  用reg代表的注册
 router.use('/login',require('./login'));
 // http://localhost:3000/reg /

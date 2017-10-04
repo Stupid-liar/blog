@@ -14,5 +14,18 @@
     时间:<%= data[0]['time']%><br>
     内容:<%= data[0]['content']%>
 </p>
+<p></p>
+<% if(pinglun.length != 0) {%>
+    <%for(var i in pinglun) {%>
+        <%= pinglun[i]['uid']%>:
+        <%= pinglun[i]['content']%><br>
+    <%}%>
+<%}%>
+
+<p></p>
+<form action="/article/<%= data[0]['id'] %>.html" method="post">
+    评论： <input name="content" >
+    <input type="submit">
+</form>
 </body>
 </html>
