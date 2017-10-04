@@ -50,7 +50,7 @@ router.post('/user/updateuser',(req,res) =>{
 router.get('/article',(req,res) => {
     res.render('admin/article')
 })
-
+//upload.array(),upload.files多个文件   多个文本框
 router.post('/article',upload.single('cdd'),(req,res) => {
     let title = req.body.title,
         tag = req.body.tag,
