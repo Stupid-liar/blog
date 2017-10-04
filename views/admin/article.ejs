@@ -9,37 +9,39 @@
     <script src="/js/jquery.js"></script>
 </head>
 <body>
-文章标题：<input class="title" type="text"><br>
-标签：<input class="tag" type="text"><br>
-作者：<input class="author"type="text"><br>
-内容：<textarea class="content" name="" id="" cols="30" rows="10"></textarea>
-<input class="button" type="button" value="发布文章">
-
 <form action="/admin/article" enctype="multipart/form-data" method="post">
-    <input  type="file" name="cdd">
-    <input type="submit">
+    文章标题：<input class="title" type="text" name="title"><br>
+    标签：<input class="tag" type="text" name="tag"><br>
+    作者：<input class="author"type="text" name="author"><br>
+    内容：<textarea class="content" name="content" id="" cols="30" rows="10"></textarea>
+    封面<input  class="upload" type="file" name="cdd">
+    <input class="button" type="submit" value="发布文章">
 </form>
-<script>
-    $('.button').click(function () {
 
-        $.ajax({
-            url:'/admin/article',
-            type:'post',
-            dataType:'json',
-            data:{
-                title:$('.title').val(),
-                tag:$('.tag').val(),
-                author:$('.author').val(),
-                content:$('.content').val(),
-            },
-            success(){
-                alert('保存成功')
-            }，
-            error(){
-                alert('保存失败')
-            }
-        })
-    })
-</script>
+
+
+<!--<script>-->
+    <!--$('.button').click(function () {-->
+        <!--$.ajax({-->
+            <!--url:'/admin/article',-->
+            <!--type:'post',-->
+            <!--dataType:'json',-->
+            <!--contentType: 'multipart/form-data',-->
+            <!--data:{-->
+                <!--title:$('.title').val(),-->
+                <!--tag:$('.tag').val(),-->
+                <!--author:$('.author').val(),-->
+                <!--content:$('.content').val(),-->
+                <!--cdd: $('.upload').val()-->
+            <!--},-->
+            <!--success(){-->
+                <!--alert('保存成功')-->
+            <!--}，-->
+            <!--error(){-->
+                <!--alert('保存失败')-->
+            <!--}-->
+       <!--})-->
+    <!--})-->
+<!--</script>-->
 </body>
 </html>
