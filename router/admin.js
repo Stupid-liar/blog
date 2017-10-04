@@ -55,10 +55,14 @@ router.post('/article',upload.single('cdd'),(req,res) => {
     let title = req.body.title,
         tag = req.body.tag,
         author = req.body.author,
-        content = req.body.content,
-        img = '/img/' + req.file.filename,
+        content = req.body.content;
+
+        let img = '/img/' + req.file.filename;
+
+
+
         // time = new Date().toLocaleString().substring(0,10);
-        time = new Date().toLocaleString();
+        let time = new Date().toLocaleString();
     sql('INSERT INTO `article` (`id`, `title`, `tag`, `author`, `content`, `time`,`img`) VALUES (0,?,?,?,?,?,?)',[title,tag,author,content,time,img],(err,data) =>{
             if(err){
                 res.send('保存失败')
