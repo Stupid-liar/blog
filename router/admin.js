@@ -1,6 +1,18 @@
 const express = require('express'),
     router = express.Router(),
-    sql = require('../module/mysql');
+    sql = require('../module/mysql'),
+    multer = require('multer');
+//配置信息
+let storage = multer.diskStorage({  //上穿路径处理上传之后重命名
+    desctination: `${process.cwd()}/public`,
+    filename: function (req,file,cb) {
+        console.log(file);
+    }
+});
+//使用信息
+let upload = multer({
+    storage: storage
+});
 //get post 任何形式的访问都会走这一条路由
 
 router.use((req,res,next) =>{
@@ -48,22 +60,22 @@ router.get('/article',(req,res) => {
     res.render('admin/article')
 })
 
-router.post('/article',(req,res) => {
-    let title = req.body.title,
-        tag = req.body.tag,
-        author = req.body.author,
-        content = req.body.content,
-        // time = new Date().toLocaleString().substring(0,10);
-        time = new Date().toLocaleString();
+router.post('/article',upload.single('cdd'),(req,res) => {
+    // let title = req.body.title,
+    //     tag = req.body.tag,
+    //     author = req.body.author,
+    //     content = req.body.content,
+    //     // time = new Date().toLocaleString().substring(0,10);
+    //     time = new Date().toLocaleString();
+    // sql('INSERT INTO `article` (`id`, `title`, `tag`, `author`, `content`, `time`) VALUES (0,?,?,?,?,?)',[title,tag,author,content,time],(err,data) =>{
+    //         if(err){
+    //             res.send('保存失败')
+    //             return
+    //         }
+    //         res.json({
+    //             result: '保存成功'
+    //         })
+    //     })
 
-    sql('INSERT INTO `article` (`id`, `title`, `tag`, `author`, `content`, `time`) VALUES (0,?,?,?,?,?)',[title,tag,author,content,time],(err,data) =>{
-            if(err){
-                res.send('保存失败')
-                return
-            }
-            res.json({
-                result: '保存成功'
-            })
-        })
-    })
+})
 module.exports = router;

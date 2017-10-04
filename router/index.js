@@ -25,7 +25,7 @@ router.get('/article/:id.html',(req,res) =>{
     })
 });
 router.post('/article/:id.html',(req,res) =>{
-    console.log(req.params)
+    //console.log(req.params)
     //console.log(req.body)
     sql('insert into articlepinglun (id,uid,pid,content) values (0,0,?,?)',[req.params.id,req.body.content],(err,data) => {
         res.send('成功');

@@ -14,6 +14,11 @@
 作者：<input class="author"type="text"><br>
 内容：<textarea class="content" name="" id="" cols="30" rows="10"></textarea>
 <input class="button" type="button" value="发布文章">
+
+<form action="/admin/article" enctype="multipart/form-data" method="post">
+    <input  type="file" name="cdd">
+    <input type="submit">
+</form>
 <script>
     $('.button').click(function () {
 
