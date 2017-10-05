@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<% for (var i in data)  {%>
+<li>
+    <a href="/article/<%= data[i]['id']%>.html">
+        <p>标题：<%= data[i]['title']%>
+            标签：<%= data[i]['tag']%>
+            作者:<%= data[i]['author']%>
+            时间:<%= data[i]['time']%><br>
+            内容:
+        <div>
+            <%- data[i]['content']%>
+        </div>
+        封面:<img src="<%= data[i]['img']%>" alt="暂时没有好看的图" width="400" height="400">
+        </p>
+    </a>
+
+</li>
+<%}%>
+
+</body>
+</html>

@@ -12,7 +12,15 @@ router.get('/',(req,res) =>{
     //console.log(res.locals.admin)
 
 });
-
+router.get('/search',(req,res) =>{
+    // console.log(req.query.search)
+    sql('select * from article where title like ?',['%'+ req.query.search +'%'],(err,data) =>{
+        if(err||data.length === 0){
+            res.send('没有查到相关')
+        }
+        res.render('search.ejs',{data: data})
+    });
+});
 router.get('/article/list-:page.html',(req,res) =>{
     // console.log(req.params)
     sql('select * from article order by id desc limit ?,2',[(req.params.page-1)*2],(err,data)=>{
