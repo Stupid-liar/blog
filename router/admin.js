@@ -59,8 +59,6 @@ router.post('/article',upload.single('cdd'),(req,res) => {
 
         let img = '/img/bg/' + req.file.filename;
 
-
-
         // time = new Date().toLocaleString().substring(0,10);
         let time = new Date().toLocaleString();
     sql('INSERT INTO `article` (`id`, `title`, `tag`, `author`, `content`, `time`,`img`) VALUES (0,?,?,?,?,?,?)',[title,tag,author,content,time,img],(err,data) =>{
