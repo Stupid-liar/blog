@@ -57,7 +57,7 @@ router.post('/article',upload.single('cdd'),(req,res) => {
         author = req.body.author,
         content = req.body.content;
 
-        let img = '/img/' + req.file.filename;
+        let img = '/img/bg/' + req.file.filename;
 
 
 
