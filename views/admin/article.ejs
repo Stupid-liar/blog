@@ -21,10 +21,9 @@
         <h1>内容：</h1>
         <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
     </div>
-        <div>
-            <span onclick="getContent()">保存内容</span>
-            <span onclick="getContentTxt()">保存纯文本</span>
-        </div>
+    <div>
+        <span style="display: inline-block; border: 1px solid #000;width: 100px; height: 30px;text-align: center;line-height: 30px; cursor: pointer;" onclick="getContent()">保存内容</span>
+    </div>
     封面：<input  class="upload" type="file"  name="cdd"><br>
     <input class="button" type="submit" value="发布文章">
 </form>
@@ -41,13 +40,6 @@
 //                console.log(arr.join("\n"));
             }
 
-            function getContentTxt() {
-                var arr = [];
-                arr.push(UE.getEditor('editor').getContentTxt());
-                var data = arr.join("\n");
-                $('.content').val(data);
-//                alert(arr.join("\n"));
-            }
         </script>
 </body>
 </html>

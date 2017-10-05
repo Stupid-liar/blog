@@ -7,13 +7,28 @@ router.get('/',(req,res) =>{
     //根据ID从新到旧进行排序（降序）
     sql('select * from article order by id desc limit 0,4',(err,data) =>{
         res.render('index.ejs',{data:data});
-    })
+    });
 
     //console.log(res.locals.admin)
 
 });
+
+router.get('/article/list-:page.html',(req,res) =>{
+    // console.log(req.params)
+    sql('select * from article order by id desc limit ?,2',[(req.params.page-1)*2],(err,data)=>{
+        // console.log(data)
+        if(data.length === 0){
+            res.send(err);
+        }
+        res.render('article_list.ejs',{data: data})
+    })
+})
 router.get('/article/:id.html',(req,res) =>{
     sql('select * from article where id = ?',[req.params.id],(err,data) =>{
+        sql('UPDATE `article` SET `read` = ? WHERE `article`.`id` = ?',[Number(data[0]['read'])+1,data[0]['id']],(err,data2) => {
+            // console.log(Number(data[0]['read'])+1)
+            // console.log(data[0]['id'])
+        })
         if(data.length == 0){
             res.status(404).render('404.ejs')//返回页面的状态码
             return
