@@ -56,8 +56,14 @@ router.post('/article',upload.single('cdd'),(req,res) => {
         tag = req.body.tag,
         author = req.body.author,
         content = req.body.content;
-
-        let img = '/img/bg/' + req.file.filename;
+        let img = "";
+        if(req.file === undefined){
+            img = '/img/bg/par.jpg';
+            // console.log(9);
+        }else{
+            img = '/img/bg/' + req.file.filename;
+        }
+        // let img = '/img/bg/' + req.file.filename;
 
         // time = new Date().toLocaleString().substring(0,10);
         let time = new Date().toLocaleString();
