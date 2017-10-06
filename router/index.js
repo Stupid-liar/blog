@@ -17,6 +17,7 @@ router.get('/search',(req,res) =>{
     sql('select * from article where title like ?',['%'+ req.query.search +'%'],(err,data) =>{
         if(err||data.length === 0){
             res.send('没有查到相关')
+            return;
         }
         res.render('search.ejs',{data: data})
     })
