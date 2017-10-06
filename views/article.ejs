@@ -16,7 +16,7 @@
     内容:<%- data[0]['content']%>
     封面:<img src="<%= data[0]['img']%>" alt="" width="400" height="400">
 </p>
-<p></p>
+<p>全部评论：</p>
 <% if(pinglun.length != 0) {%>
     <%for(var i in pinglun) {%>
         <%= pinglun[i]['uid']%>:
@@ -31,6 +31,8 @@
         <input name="uid" style="display:none;" value="<%= locals.login%>">
         <input type="submit">
     </form>
+<%}else{%>
+登陆可参与评论哟~
 <%}%>
 </body>
 </html>

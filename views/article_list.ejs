@@ -24,14 +24,12 @@
         封面:<img src="<%= data[i]['img']%>" alt="暂时没有好看的图" width="400" height="400">
         </p>
     </a>
-
 </li>
 <%}%>
-<a href="/article/list-1.html">1</a>
-<a href="/article/list-2.html">2</a>
-<a href="/article/list-3.html">3</a>
-<a href="/article/list-4.html">4</a>
-<a href="/article/list-5.html">5</a>
-<a href="/article/list-6.html">6</a>
+
+<% for ( var j = 0;j<(num.length)/2;j++ ){%>
+    <a href="/article/list-<%= j+1%>.html?type=<%= num[j]['tag']%>"><%= j+1%></a>
+<%}%>
+
 </body>
 </html>

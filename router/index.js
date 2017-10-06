@@ -22,15 +22,23 @@ router.get('/search',(req,res) =>{
     })
 });
 router.get('/article/list-:page.html',(req,res) =>{
-    // console.log(req.params)
-    sql('select * from article order by id desc limit ?,2',[(req.params.page-1)*2],(err,data)=>{
-        // console.log(data)
-        if(data.length === 0){
-            res.send(err);
+    //console.log(req.params.page)
+    //console.log(req.query.type)
+    sql('select * from article where tag = ? ',[req.query.type],(err,datan) =>{
+        if(datan.length === 0){
+            res.send('博主很懒什么都没有留下');
+            return;
         }
-        res.render('article_list.ejs',{data: data})
-    })
-})
+        sql('select * from article where tag = ? order by id desc limit ?,2',[req.query.type,(Number(req.params.page)-1)*2],(err,data)=>{
+            // console.log(data)
+            if(data.length === 0){
+                res.send('博主很懒什么都没有留下');
+             }
+            res.render('article_list.ejs',{data: data,num: datan})
+        })
+    });
+
+});
 router.get('/article/:id.html',(req,res) =>{
     sql('select * from article where id = ?',[req.params.id],(err,data) =>{
         sql('UPDATE `article` SET `read` = ? WHERE `article`.`id` = ?',[Number(data[0]['read'])+1,data[0]['id']],(err,data2) => {
