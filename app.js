@@ -66,4 +66,4 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
     }
 }));
 app.use('/',require('./router/index'));
-http.createServer(app).listen(3000);
+http.createServer(app).listen(3389);
